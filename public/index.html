@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCommerce</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav>
+            <div class="logo">
+    <a href="index.html">
+        <img src="images/logo.png" alt="MyCommerce Logo" class="site-logo">
+         <a href="index.html">ais.com</a>
+    </a>
+</div>
+            <ul class="nav-links">
+                <li><a href="#product-list">পণ্যসমূহ</a></li>
+                <li><a href="#cart-section">কার্ট</a></li>
+                <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                <li><a href="#contact">যোগাযোগ</a></li>
+            </ul>
+            <div class="cart-icon-container">
+                <span class="cart-icon">🛒</span>
+                <span id="nav-cart-count" class="badge">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Slider -->
+    <div id="hero-slider">
+        <div class="slider-image active">
+            <img src="images/post1.png" alt="Fashion Sale">
+            <div class="slider-caption">
+                <h2>নতুন কালেকশন!</h2>
+                <p>স্টাইলিশ পোশাকের সেরা সম্ভার।</p>
+                <a href="#product-list" class="slider-btn">এখনই কেনাকাটা করুন</a>
+            </div>
+        </div>
+        <div class="slider-image">
+            <img src="images/post2.png" alt="Electronics Deals">
+            <div class="slider-caption">
+                <h2>ইলেকট্রনিক্স অফার</h2>
+                <p>আধুনিক গ্যাজেটগুলো আকর্ষণীয় দামে পান।</p>
+                <a href="#product-list" class="slider-btn">অফার দেখুন</a>
+            </div>
+        </div>
+        <button class="prev-slide">&#10094;</button>
+        <button class="next-slide">&#10095;</button>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-container" style="text-align: center; margin: 20px;">
+        <input type="text" id="search-input" placeholder="পণ্য খুঁজুন..." style="padding: 10px; width: 300px;">
+    </div>
+
+    <!-- Page Title -->
+    <h1 style="text-align: center;">আমাদের পণ্যসমূহ</h1>
+    <p style="text-align: center;">আপনার পছন্দের পণ্যটি খুঁজে নিন!</p>
+
+    <!-- Filter & Sort -->
+    <div class="filter-sort-container">
+        <div class="filter-by-category">
+            <label for="category-filter">ক্যাটাগরি:</label>
+            <select id="category-filter">
+                <option value="all">সব</option>
+            </select>
+        </div>
+        <div class="sort-by-price">
+            <label for="sort-by">সর্ট করুন:</label>
+            <select id="sort-by">
+                <option value="default">ডিফল্ট</option>
+                <option value="price-asc">দাম: কম থেকে বেশি</option>
+                <option value="price-desc">দাম: বেশি থেকে কম</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Product List -->
+    <div id="product-list"></div>
+
+    <!-- Cart Section -->
+    <div id="cart-section">
+        <h2>আপনার কার্ট (<span id="cart-count">0</span>)</h2>
+        <div id="cart-items"><p>কার্ট খালি।</p></div>
+        <p>মোট মূল্য: <span id="cart-total">0</span> টাকা</p>
+        <button id="checkout-btn">চেকআউট করুন</button>
+    </div>
+
+    <!-- Checkout Section -->
+    <div id="checkout-section" style="display: none;">
+        <h2>চেকআউট করুন</h2>
+        <form id="checkout-form">
+            <div class="form-group">
+                <label for="name">আপনার নাম:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">ইমেইল:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">ডেলিভারি ঠিকানা:</label>
+                <textarea id="address" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="phone">ফোন নম্বর:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <button type="submit">অর্ডার নিশ্চিত করুন</button>
+        </form>
+
+        <div id="order-confirmation" style="display: none;">
+            <h3>আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h3>
+            <p>ধন্যবাদ, <span id="conf-name"></span>।</p>
+            <p>অর্ডার নম্বর: <span id="order-id"></span></p>
+            <p>আপনার ঠিকানায় পৌঁছে দেওয়া হবে: <span id="conf-address"></span></p>
+            <button id="continue-shopping-btn">কেনাকাটা চালিয়ে যান</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>MyCommerce</h3>
+                <p>আপনার পছন্দের সবকিছু এক জায়গায়। সেরা মানের পণ্য এবং চমৎকার গ্রাহক সেবা।</p>
+            </div>
+            <div class="footer-section links">
+                <h3>গুরুত্বপূর্ণ লিংক</h3>
+                <ul>
+                    <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#contact">যোগাযোগ</a></li>
+                    <li><a href="#">প্রাইভেসি পলিসি</a></li>
+                    <li><a href="#">টার্মস অফ সার্ভিস</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>যোগাযোগ করুন</h3>
+                <p>ঢাকা, বাংলাদেশ</p>
+                <p>+880 1796114348</p>
+                <p>asrafulislamshakil98@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="current-year"></span> MyCommerce. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
