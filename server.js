@@ -7,10 +7,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-mongodb+srv://shakilkhan:aYyn9sr.ZZgPG.Z@cluster0.hwgbutt.mongodb.net/?appName=Cluster0
 
+const dbURI = 'mongodb+srv://shakilkhan:aYyn9sr.ZZgPG.Z@cluster0.hwgbutt.mongodb.net/?appName=Cluster0';
+
+mongoose.connect(dbURI)
     .then(() => console.log("Database Connected"))
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 
 // --- Product Schema ---
 const productSchema = new mongoose.Schema({
