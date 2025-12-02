@@ -26,7 +26,7 @@ const searchInput = document.getElementById('search-input');
 // -------------------- সার্ভার থেকে ডাটা ফেচ করা --------------------
 async function fetchProducts() {
     try {
-        const res = await fetch('http://localhost:3000/api/products');
+        const res = await fetch('https://ais-com.onrender.com/api/products');
         const data = await res.json();
         products = data;
         displayProducts(products);
@@ -173,7 +173,7 @@ checkoutForm.addEventListener('submit', async (e) => {
 
     try {
         // সার্ভারে পাঠানো
-        const response = await fetch('http://localhost:3000/api/place-order', {
+        const response = await fetch('https://ais-com.onrender.com/api/place-order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderData)
