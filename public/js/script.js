@@ -260,3 +260,34 @@ if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
 fetchProducts(); 
 updateCartUI();
+
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById('msgName').value,
+        phone: document.getElementById('msgPhone').value,
+        message: document.getElementById('msgText').value
+    };
+
+    try {
+        const res = await fetch('https://ais-com.onrender.com/api/send-message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await res.json();
+        if (result.success) {
+            alert('ধন্যবাদ! আপনার মেসেজ পাঠানো হয়েছে।');
+            e.target.reset(); // ফর্ম খালি করে দেবে
+        } else {
+            alert('সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+        }
+    } catch (error) {
+        console.error(error);
+        alert('সার্ভার এরর!');
+    }
+    
+});
+

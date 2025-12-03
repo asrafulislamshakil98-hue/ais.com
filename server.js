@@ -77,6 +77,45 @@ app.delete('/api/delete-order/:id', async (req, res) => {
     res.json({ message: "Order Deleted!" });
 });
 
+// ১. মেসেজ এর জন্য স্কিমা তৈরি (Schema)
+const messageSchema = new mongoose.Schema({
+    name: String,
+    phone: String,
+    message: String,
+    date: { type: Date, default: Date.now }
+});
+const Message = mongoose.model('Message', messageSchema);
+
+// ২. কাস্টমার থেকে মেসেজ রিসিভ করার API (POST)
+app.post('/api/send-message', async (req, res) => {
+    try {
+        const newMessage = new Message(req.body);
+        await newMessage.save();
+        res.json({ success: true, message: "মেসেজ সফলভাবে পাঠানো হয়েছে!" });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ৩. অ্যাডমিন প্যানেলে মেসেজ দেখানোর API (GET)
+app.get('/api/messages', async (req, res) => {
+    try {
+        const messages = await Message.find().sort({ date: -1 }); // নতুন মেসেজ আগে দেখাবে
+        res.json(messages);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ৪. মেসেজ ডিলিট করার API (DELETE)
+app.delete('/api/delete-message/:id', async (req, res) => {
+    try {
+        await Message.findByIdAndDelete(req.params.id);
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 // Server
 app.listen(3000, () => {
     console.log("Server running on port 3000");
